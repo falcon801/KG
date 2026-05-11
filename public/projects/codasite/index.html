@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Fabrication health</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .strip {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+      .big {
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+      .chart-surface {
+        min-height: 180px;
+        position: relative;
+      }
+      .metric-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        min-width: 640px;
+      }
+      @media (max-width: 700px) {
+        .metric-row {
+          min-width: 100%;
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .click {
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 0.65rem 0.75rem;
+        border: 1px solid var(--dm-line);
+        background: var(--dm-elevated);
+      }
+      .click:hover {
+        border-color: var(--dm-line-strong);
+      }
+      .join {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+      .join button {
+        font-size: 11px;
+      }
+      #metricInfoModal[data-open="true"] {
+        display: flex;
+      }
+      #metricInfoModal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.65);
+      }
+      .modal-box {
+        width: min(100%, 480px);
+        border-radius: 10px;
+        border: 1px solid var(--dm-line-strong);
+        background: var(--dm-surface);
+        padding: 1rem;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Fabrication health</h1>
+          <p class="dm-sub">ERP-style exports boiled down to a morning scan: issues, status mix, department pressure.</p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-card" style="margin-bottom: 1rem; overflow: hidden">
+        <div class="dm-card-b" style="padding: 0">
+          <div class="strip" style="padding: 0.75rem">
+            <div class="click" data-metric="issues-primary" tabindex="0" role="button">
+              <div class="dm-muted" style="font-size: 11px">Issues (30 days)</div>
+              <div class="big" id="issuesPrimaryValue">0</div>
+            </div>
+            <div class="click" data-metric="issues-compare" tabindex="0" role="button">
+              <div class="dm-muted" style="font-size: 11px">Issues (180 days)</div>
+              <div class="big" id="issuesCompareValue">0</div>
+            </div>
+          </div>
+          <div style="overflow-x: auto; border-top: 1px solid var(--dm-line)">
+            <div class="metric-row" style="padding: 0.75rem">
+              <div class="click" data-metric="recut" tabindex="0" role="button">
+                <div class="dm-muted" style="font-size: 11px">Recut</div>
+                <div class="big" id="recutValue">0</div>
+              </div>
+              <div class="click" data-metric="rework" tabindex="0" role="button">
+                <div class="dm-muted" style="font-size: 11px">Rework</div>
+                <div class="big" id="reworkValue">0</div>
+              </div>
+              <div class="click" data-metric="pipeline" tabindex="0" role="button">
+                <div class="dm-muted" style="font-size: 11px">Pipeline</div>
+                <div class="big" id="pipelineValue">0</div>
+              </div>
+              <div class="click" data-metric="callback" tabindex="0" role="button">
+                <div class="dm-muted" style="font-size: 11px">Callback</div>
+                <div class="big" id="callbackValue">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))">
+        <div class="dm-card">
+          <div class="dm-card-h dm-row" style="justify-content: space-between; align-items: center">
+            <span>Department totals</span>
+            <div class="join" role="group" aria-label="Window">
+              <button class="dm-btn" type="button" id="window30Btn">30d</button>
+              <button class="dm-btn" type="button" id="window180Btn">180d</button>
+              <button class="dm-btn" type="button" id="windowYtdBtn">YTD</button>
+              <button class="dm-btn" type="button" id="window365Btn">365d</button>
+            </div>
+          </div>
+          <div class="dm-card-b">
+            <div class="chart-surface">
+              <canvas id="departmentBarChart" aria-label="Department bar chart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-card-h dm-row" style="justify-content: space-between">
+            <span>Top issue types</span>
+            <span class="dm-muted" id="topIssuesWindowMeta">Last 30 days</span>
+          </div>
+          <div class="dm-card-b">
+            <div class="chart-surface">
+              <canvas id="topIssuesPieChart" aria-label="Issues pie chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="metricInfoModal" data-open="false">
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="dm-row" style="justify-content: space-between; margin-bottom: 0.5rem">
+          <h3 id="metricInfoTitle" class="dm-title" style="font-size: 1rem">Metric</h3>
+          <button type="button" class="dm-btn" id="metricInfoCloseBtn">Close</button>
+        </div>
+        <div id="metricInfoBody" class="hidden dm-muted"></div>
+        <div class="dm-stat" style="margin-top: 0.75rem">
+          <div class="dm-stat-k">Current value</div>
+          <div class="dm-stat-v" id="metricInfoValue">0</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

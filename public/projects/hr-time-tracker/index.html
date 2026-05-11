@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Payroll exceptions</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Payroll exception queue</h1>
+          <p class="dm-sub">
+            Imported punches compared to policy, distilled to a queue. This page uses fabricated rows; production tied
+            into a database layer that is not shipped here.
+          </p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-tabs">
+        <button class="dm-tab" type="button" id="tabOpen" aria-selected="true">Open only</button>
+        <button class="dm-tab" type="button" id="tabAll" aria-selected="false">All</button>
+      </div>
+
+      <div class="dm-card">
+        <div class="dm-card-h dm-row" style="justify-content: space-between; gap: 0.75rem">
+          <span>Queue</span>
+          <input class="dm-input" id="filter" placeholder="Filter name, dept, type…" style="max-width: 240px" />
+        </div>
+        <div class="dm-card-b" style="padding: 0">
+          <div class="dm-table-wrap" style="border: none">
+            <table class="dm-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Employee</th>
+                  <th>Dept</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

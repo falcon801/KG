@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Training compliance</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Training compliance board</h1>
+          <p class="dm-sub">Toggle cells to flip completion. Local only. Production tied roster imports to assignments.</p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-card">
+        <div class="dm-card-h">Roster matrix</div>
+        <div class="dm-card-b" style="padding: 0">
+          <div class="dm-table-wrap" style="border: none">
+            <table class="dm-table" id="grid">
+              <thead id="thead"></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

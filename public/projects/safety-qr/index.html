@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Safety report</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .hidden {
+        display: none !important;
+      }
+      .bar-wrap {
+        height: 4px;
+        border-radius: 999px;
+        background: var(--dm-elevated);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .bar {
+        height: 100%;
+        width: 25%;
+        background: var(--dm-accent);
+        transition: width 0.2s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Safety concern intake</h1>
+          <p class="dm-sub">QR-friendly flow: short text, department, optional contact. No network calls in this demo.</p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="bar-wrap"><div class="bar" id="bar"></div></div>
+
+      <div class="dm-card" data-step="1">
+        <div class="dm-card-h">Step 1: What happened</div>
+        <div class="dm-card-b dm-grid2" style="grid-template-columns: 1fr">
+          <div>
+            <label class="dm-label">Concern (plain language)</label>
+            <textarea class="dm-textarea" id="concernArea" rows="4" placeholder="Near miss, hazard, equipment fault…"></textarea>
+          </div>
+          <div class="dm-row" style="justify-content: flex-end">
+            <button type="button" class="dm-btn dm-btn-primary" id="next1">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dm-card hidden" data-step="2">
+        <div class="dm-card-h">Step 2: Where</div>
+        <div class="dm-card-b dm-grid2">
+          <div>
+            <label class="dm-label">Department</label>
+            <select class="dm-select" id="dept"></select>
+          </div>
+          <div>
+            <label class="dm-label">Location hint</label>
+            <select class="dm-select" id="loc"></select>
+          </div>
+          <div class="dm-row" style="grid-column: 1 / -1; justify-content: space-between">
+            <button type="button" class="dm-btn" id="back2">Back</button>
+            <button type="button" class="dm-btn dm-btn-primary" id="next2">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dm-card hidden" data-step="3">
+        <div class="dm-card-h">Step 3: Contact (optional)</div>
+        <div class="dm-card-b dm-grid2" style="grid-template-columns: 1fr">
+          <div>
+            <label class="dm-label">Name or extension (optional)</label>
+            <input class="dm-input" id="contact" placeholder="Leave blank to stay anonymous in the demo" />
+          </div>
+          <div>
+            <label class="dm-label">Photo URL (fake)</label>
+            <input class="dm-input" id="photo" placeholder="https://example.com/photo.jpg" />
+          </div>
+          <div class="dm-row" style="grid-column: 1 / -1; justify-content: space-between">
+            <button type="button" class="dm-btn" id="back3">Back</button>
+            <button type="button" class="dm-btn dm-btn-primary" id="submit">Submit (local only)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dm-card hidden" data-step="4">
+        <div class="dm-card-h">Recorded (demo)</div>
+        <div class="dm-card-b">
+          <p class="dm-muted" style="margin-top: 0">
+            In production this would hand off to secure storage. Here nothing is transmitted.
+          </p>
+          <div class="dm-stat" style="margin-top: 0.75rem">
+            <div class="dm-stat-k">Reference</div>
+            <div class="dm-stat-v" id="ref">-</div>
+          </div>
+          <div class="dm-row" style="margin-top: 1rem">
+            <button type="button" class="dm-btn" id="again">Start another</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

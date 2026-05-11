@@ -1,0 +1,45 @@
+{
+  "lookups": {
+    "channels": ["Walk-in", "Phone", "Email"],
+    "outcomes": ["Resolved", "Escalated", "Follow-up"],
+    "topics": ["Parts pickup", "Scheduling", "Billing question", "General"]
+  },
+  "interactions": [
+    {
+      "id": "int-901",
+      "when": "2026-05-09T14:22:00",
+      "channel": "Walk-in",
+      "topic": "Parts pickup",
+      "summary": "Will-call arc reactor housing. Verified ID and release paperwork.",
+      "outcome": "Resolved",
+      "guest": "Pepper Potts"
+    },
+    {
+      "id": "int-902",
+      "when": "2026-05-09T11:05:00",
+      "channel": "Phone",
+      "topic": "Scheduling",
+      "summary": "Reschedule tower glass measure; offered two afternoon slots next week.",
+      "outcome": "Follow-up",
+      "guest": "Happy Hogan"
+    },
+    {
+      "id": "int-903",
+      "when": "2026-05-08T16:40:00",
+      "channel": "Email",
+      "topic": "Billing question",
+      "summary": "Clarified portal charge on invoice PDF; CC billing alias.",
+      "outcome": "Resolved",
+      "guest": "Wong"
+    },
+    {
+      "id": "int-904",
+      "when": "2026-05-08T09:18:00",
+      "channel": "Walk-in",
+      "topic": "General",
+      "summary": "Visitor badge + directions to the tiny-door loading bay.",
+      "outcome": "Resolved",
+      "guest": "Scott Lang"
+    }
+  ]
+}

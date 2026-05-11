@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Asset tracker</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Asset tracker</h1>
+          <p class="dm-sub">Search hardware and licenses, assign to a teammate. Local JSON only.</p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-card">
+        <div class="dm-card-h dm-row" style="justify-content: space-between">
+          <span>Inventory</span>
+          <input class="dm-input" id="filter" placeholder="Filter tag, category, assignee…" style="max-width: 220px" />
+        </div>
+        <div class="dm-card-b" style="padding: 0">
+          <div class="dm-table-wrap" style="border: none; border-radius: 0">
+            <table class="dm-table">
+              <thead>
+                <tr>
+                  <th>Tag</th>
+                  <th>Category</th>
+                  <th>Item</th>
+                  <th>Status</th>
+                  <th>Assignee</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dm-modal-bg" id="modal" data-open="false">
+      <div class="dm-modal" role="dialog" aria-modal="true" aria-labelledby="mh" onclick="event.stopPropagation()">
+        <h2 id="mh" class="dm-title" style="font-size: 1rem">Assign asset</h2>
+        <p class="dm-muted" style="margin-top: 0.35rem">Pick a fake teammate. Nothing leaves this page.</p>
+        <label class="dm-label" style="margin-top: 1rem">Assignee</label>
+        <select class="dm-select" id="assignee"></select>
+        <div class="dm-row" style="margin-top: 1rem; justify-content: flex-end; gap: 0.5rem">
+          <button type="button" class="dm-btn" id="cancelModal">Cancel</button>
+          <button type="button" class="dm-btn dm-btn-primary" id="saveAssign">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

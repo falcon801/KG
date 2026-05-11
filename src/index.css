@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ch-accent: 191 165 120;
+  --ch-accent-light: 240 228 205;
+  --ch-accent-deep: 112 92 63;
+  --ch-earth-gray: 74 68 58;
+  --ch-copper: 156 112 72;
+  --ch-clay: 184 121 103;
+  --ch-olive: 143 163 109;
+  --ch-warm: 201 164 92;
+  --ch-white: 255 255 255;
+  --ch-black: 0 0 0;
+  --ch-bg: 11 10 8;
+  --ch-bg-sec: 17 15 12;
+  --ch-glass: 24 21 15;
+  --ch-glass-h: 33 29 20;
+  --ch-bg-mid: 18 16 12;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none;
+  }
+  body {
+    @apply min-h-dvh bg-canvas font-sans text-[#f5ead8];
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.65;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none;
+  }
+  #root {
+    min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+  main,
+  section,
+  header,
+  footer {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  ::selection {
+    background-color: #5a4a35;
+    color: #fff;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar:horizontal {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+::-webkit-scrollbar:horizontal {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--ch-bg) / 0.85);
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--ch-accent) / 0.38);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ch-accent) / 0.58);
+}
+
+@keyframes portfolio-orb-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(60px, -40px) scale(1.08);
+  }
+  50% {
+    transform: translate(-30px, 50px) scale(0.95);
+  }
+  75% {
+    transform: translate(-50px, -20px) scale(1.04);
+  }
+}
+@keyframes portfolio-orb-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-50px, 30px) scale(1.05);
+  }
+  50% {
+    transform: translate(40px, -60px) scale(0.92);
+  }
+  75% {
+    transform: translate(20px, 40px) scale(1.08);
+  }
+}
+@keyframes portfolio-orb-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, 50px) scale(1.06);
+  }
+  66% {
+    transform: translate(-60px, -30px) scale(0.94);
+  }
+}
+
+.portfolio-bg {
+  background:
+    radial-gradient(1100px 680px at 18% -10%, rgb(112 92 63 / 0.22), transparent 62%),
+    radial-gradient(880px 600px at 92% 16%, rgb(143 163 109 / 0.08), transparent 58%),
+    linear-gradient(180deg, #0b0a08 0%, #12100c 44%, #080706 100%);
+}
+
+.portfolio-grid {
+  background-image:
+    linear-gradient(rgb(191 165 120 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(191 165 120 / 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 100%);
+}
+
+.portfolio-vignette {
+  background:
+    linear-gradient(to bottom, rgb(0 0 0 / 0.28), transparent 24%, transparent 100%),
+    radial-gradient(ellipse 78% 58% at 50% 20%, transparent 18%, rgb(0 0 0 / 0.42) 100%);
+}
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #fffaf0, rgb(var(--ch-accent-light)), rgb(var(--ch-accent)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+img[src*="deadpool-bridge-steam.gif"] {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  transform: none !important;
+}
+
+@layer components {
+  .btn-portfolio-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.825rem 1.35rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+    color: #f8fafc;
+    border: 1px solid rgb(240 228 205 / 0.22);
+    background: linear-gradient(180deg, #ead9b8 0%, #b9965d 100%);
+    box-shadow:
+      0 12px 28px rgb(0 0 0 / 0.36),
+      inset 0 1px 0 rgb(255 255 255 / 0.45);
+    color: #17110a;
+  }
+  .btn-portfolio-primary:hover {
+    color: #0f0a05;
+    border-color: rgb(255 250 240 / 0.32);
+    background: linear-gradient(180deg, #fff0cf 0%, #c8a15f 100%);
+    box-shadow:
+      0 16px 34px rgb(0 0 0 / 0.44),
+      inset 0 1px 0 rgb(255 255 255 / 0.55);
+    transform: translateY(-1px);
+  }
+
+  .btn-portfolio-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.825rem 1.35rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: #d4c5ad;
+    border: 1px solid rgb(255 255 255 / 0.11);
+    background: rgb(255 255 255 / 0.045);
+    backdrop-filter: blur(10px);
+    transition:
+      border-color 0.25s ease,
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+  .btn-portfolio-outline:hover {
+    border-color: rgb(240 228 205 / 0.24);
+    background: rgb(255 255 255 / 0.075);
+    color: #f5ead8;
+    transform: translateY(-1px);
+  }
+
+  .btn-portfolio-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.825rem 1.1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: #b7aa94;
+    border: 1px solid transparent;
+    transition:
+      border-color 0.25s ease,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+  .btn-portfolio-ghost:hover {
+    border-color: rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.04);
+    color: #fff;
+  }
+
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass {
+    @apply border border-line/55 bg-card/45 shadow-card backdrop-blur-xl;
+  }
+  .glass-strong {
+    @apply border border-line-hover/45 bg-card-hover/55 shadow-card-hover backdrop-blur-2xl;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-orb,
+  .portfolio-orb-glow {
+    animation: none !important;
+    opacity: 0.22;
+  }
+  .btn-portfolio-primary:hover,
+  .btn-portfolio-outline:hover {
+    transform: none;
+  }
+}

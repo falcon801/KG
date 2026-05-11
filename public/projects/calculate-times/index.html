@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Shop time estimator</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Shop time estimator</h1>
+          <p class="dm-sub">
+            Client-side stand-in for the production workbook pipeline. Totals split across shop steps using fixed
+            weights; numbers update as you type.
+          </p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-row" style="gap: 1rem; align-items: stretch">
+        <div class="dm-card" style="flex: 1; min-width: min(100%, 280px)">
+          <div class="dm-card-h">Job inputs</div>
+          <div class="dm-card-b">
+            <form id="est" class="dm-grid2" style="grid-template-columns: 1fr; gap: 0.75rem">
+              <div>
+                <label class="dm-label">SF tops 2-3cm</label>
+                <input class="dm-input live" type="number" step="any" name="sf_tops_2_3" value="120" />
+              </div>
+              <div>
+                <label class="dm-label">LF edge 2-3cm</label>
+                <input class="dm-input live" type="number" step="any" name="lf_edge_2_3" value="85" />
+              </div>
+              <div>
+                <label class="dm-label">SF tops 4-6cm</label>
+                <input class="dm-input live" type="number" step="any" name="sf_tops_4_6" value="40" />
+              </div>
+              <div>
+                <label class="dm-label">LF edge 4-6cm</label>
+                <input class="dm-input live" type="number" step="any" name="lf_edge_4_6" value="32" />
+              </div>
+              <div>
+                <label class="dm-label">Seams</label>
+                <input class="dm-input live" type="number" step="any" name="seams" value="6" />
+              </div>
+              <div>
+                <label class="dm-label">U/M sinks</label>
+                <input class="dm-input live" type="number" step="any" name="um_sink_count" value="2" />
+              </div>
+              <div>
+                <label class="dm-label">Mileage</label>
+                <input class="dm-input live" type="number" step="any" name="mileage" value="18" />
+              </div>
+              <div>
+                <label class="dm-label">Number of tops</label>
+                <input class="dm-input live" type="number" step="any" name="number_of_tops" value="4" />
+              </div>
+              <div>
+                <label class="dm-label">LF splash</label>
+                <input class="dm-input live" type="number" step="any" name="lf_splash" value="14" />
+              </div>
+              <div>
+                <label class="dm-label">SF full splash</label>
+                <input class="dm-input live" type="number" step="any" name="sf_full_splash" value="8" />
+              </div>
+              <div class="dm-row" style="grid-column: 1 / -1; justify-content: flex-end; margin-top: 0.5rem">
+                <button type="button" class="dm-btn" id="reset">Reset zeros</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="dm-card" style="flex: 1.2; min-width: min(100%, 320px)">
+          <div class="dm-card-h">Tracker hours (derived)</div>
+          <div class="dm-card-b">
+            <p class="dm-muted" style="margin-top: 0">Single scalar from the same inputs (scaled for readability).</p>
+            <div class="dm-stat" style="margin-top: 0.75rem">
+              <div class="dm-stat-k">Composite tracker value</div>
+              <div class="dm-stat-v" id="ttrak">0.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dm-card" style="margin-top: 1rem">
+        <div class="dm-card-h">Line breakdown (minutes)</div>
+        <div class="dm-card-b" style="padding: 0">
+          <div class="dm-table-wrap" style="border: none">
+            <table class="dm-table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Minutes</th>
+                </tr>
+              </thead>
+              <tbody id="lines"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tb = document.getElementById("lines");
+      const labels = [
+        "Stark template",
+        "Friday review",
+        "Jarvis CAD drawing",
+        "Wakanda slab layout",
+        "Avengers approval",
+        "Stark shop files",
+        "Spider pathing",
+        "Vibranium slabs",
+        "Shield rodding",
+        "Laser saw",
+        "Milling gauntlet",
+        "Splash zone",
+        "CNC helicarrier",
+        "CNC: arc sinks",
+        "Wakanda CNC",
+        "Mirror polish",
+        "Vibranium polish",
+        "Miter protocol",
+        "Quantum lamination",
+        "Rock chip",
+        "Pym chip repair",
+        "Avengers install",
+      ];
+      labels.forEach((label, i) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${label}</td><td data-row="${i}">0.00</td>`;
+        tb.appendChild(tr);
+      });
+    </script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

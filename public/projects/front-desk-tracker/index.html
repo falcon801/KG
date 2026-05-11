@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo · Front desk log</title>
+    <link rel="stylesheet" href="../_shared/demo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dm-wrap">
+      <div class="dm-topbar">
+        <div>
+          <h1 class="dm-title">Front desk log</h1>
+          <p class="dm-sub">List interactions, open a row, or add a new line. Stored in memory for this session only.</p>
+        </div>
+        <span class="dm-badge">Demo</span>
+      </div>
+
+      <div class="dm-tabs">
+        <button class="dm-tab" type="button" id="tabList" aria-selected="true">Interactions</button>
+        <button class="dm-tab" type="button" id="tabNew" aria-selected="false">New entry</button>
+      </div>
+
+      <div id="listPanel">
+        <div class="dm-card">
+          <div class="dm-card-h">Recent</div>
+          <div class="dm-card-b" style="padding: 0">
+            <div class="dm-table-wrap" style="border: none">
+              <table class="dm-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>When</th>
+                    <th>Channel</th>
+                    <th>Topic</th>
+                    <th>Outcome</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="fdBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detailPanel" class="hidden">
+        <div class="dm-card">
+          <div class="dm-card-h dm-row" style="justify-content: space-between">
+            <span id="dTitle">-</span>
+            <button type="button" class="dm-btn" id="backList">Back to list</button>
+          </div>
+          <div class="dm-card-b">
+            <p class="dm-muted" id="dMeta">-</p>
+            <div>
+              <div class="dm-label">Guest</div>
+              <div id="dGuest">-</div>
+            </div>
+            <div>
+              <div class="dm-label">Summary</div>
+              <p id="dSummary" style="margin: 0">-</p>
+            </div>
+            <div>
+              <div class="dm-label">Outcome</div>
+              <span class="dm-pill dm-pill-ok" id="dOutcome">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="newPanel" class="hidden">
+        <div class="dm-card">
+          <div class="dm-card-h">New interaction</div>
+          <div class="dm-card-b dm-grid2">
+            <div>
+              <label class="dm-label">Channel</label>
+              <select class="dm-select" id="fdChannel"></select>
+            </div>
+            <div>
+              <label class="dm-label">Topic</label>
+              <select class="dm-select" id="fdTopic"></select>
+            </div>
+            <div>
+              <label class="dm-label">Outcome</label>
+              <select class="dm-select" id="fdOutcome"></select>
+            </div>
+            <div>
+              <label class="dm-label">Guest name</label>
+              <input class="dm-input" id="fdGuest" />
+            </div>
+            <div style="grid-column: 1 / -1">
+              <label class="dm-label">Summary</label>
+              <textarea class="dm-textarea" id="fdSummary" rows="3" placeholder="What happened?"></textarea>
+            </div>
+            <div class="dm-row" style="grid-column: 1 / -1; justify-content: flex-end">
+              <button type="button" class="dm-btn dm-btn-primary" id="saveNew">Save to list</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

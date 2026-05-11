@@ -1,0 +1,8 @@
+{
+  "courses": ["Quinjet safety", "Arc reactor lockout", "Vibranium handling", "Web fluid cleanup"],
+  "people": [
+    { "name": "Steve Rogers", "done": { "Quinjet safety": true, "Arc reactor lockout": true, "Vibranium handling": false, "Web fluid cleanup": false } },
+    { "name": "Carol Danvers", "done": { "Quinjet safety": false, "Arc reactor lockout": true, "Vibranium handling": true, "Web fluid cleanup": true } },
+    { "name": "Peter Parker", "done": { "Quinjet safety": true, "Arc reactor lockout": true, "Vibranium handling": true, "Web fluid cleanup": false } }
+  ]
+}

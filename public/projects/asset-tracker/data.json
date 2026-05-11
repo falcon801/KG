@@ -1,0 +1,41 @@
+{
+  "assets": [
+    {
+      "id": "a1",
+      "tag": "STARK-3000",
+      "category": "Laptop",
+      "brand": "StarkBook",
+      "model": "Arc 14",
+      "status": "Assigned",
+      "assignee": "Tony Stark"
+    },
+    {
+      "id": "a2",
+      "tag": "WEB-616",
+      "category": "Dock",
+      "brand": "WebLink",
+      "model": "Spider-Dock",
+      "status": "Available",
+      "assignee": ""
+    },
+    {
+      "id": "a3",
+      "tag": "WAK-0092",
+      "category": "License",
+      "brand": "VibraniumCAD",
+      "model": "Lab seat",
+      "status": "Assigned",
+      "assignee": "Shuri"
+    },
+    {
+      "id": "a4",
+      "tag": "PYM-1988",
+      "category": "Handheld",
+      "brand": "PymScan",
+      "model": "Quantum TC22",
+      "status": "Repair",
+      "assignee": ""
+    }
+  ],
+  "people": ["Tony Stark", "Shuri", "Peter Parker", "Natasha Romanoff"]
+}
