@@ -1,3 +1,5 @@
+import { publicUrl } from "../lib/publicUrl";
+
 export type Profile = {
   name: string;
   headline: string;
@@ -41,6 +43,6 @@ export const profile: Profile = {
     tel: "+14356608647",
     resumeLabel: "Resume",
     resumeHref: "/resume",
-    resumePdfHref: "/Kelley_Groves_Resume.pdf",
+    resumePdfHref: publicUrl("Kelley_Groves_Resume.pdf"),
   },
 };
