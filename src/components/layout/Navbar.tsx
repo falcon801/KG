@@ -72,13 +72,15 @@ export function Navbar() {
 
         <div className="relative z-10 ml-auto flex items-center gap-2">
           <div className="hidden items-center gap-2 lg:flex">
-            <Link
-              to={profile.contact.resumeHref}
+            <a
+              href={profile.contact.resumePdfHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-[#5a4a35]/65 bg-[#18150f]/70 px-3.5 py-2 text-[13px] font-medium text-[#e8dcc8] transition hover:border-[#c9a45c]/45 hover:bg-[#211d15]/75 hover:text-[#fff4df]"
             >
               <FileText className="h-4 w-4 opacity-80" aria-hidden />
               Resume
-            </Link>
+            </a>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
@@ -159,14 +161,16 @@ export function Navbar() {
               <div className="h-px bg-white/[0.06]" />
 
               <div className="flex flex-col gap-2">
-                <Link
-                  to={profile.contact.resumeHref}
+                <a
+                  href={profile.contact.resumePdfHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center gap-2 rounded-lg border border-[#5a4a35]/65 bg-[#18150f]/70 py-3.5 text-[15px] font-medium text-[#e8dcc8]"
                 >
                   <FileText className="h-4 w-4" aria-hidden />
                   Resume
-                </Link>
+                </a>
                 <NavLink
                   to="/contact"
                   onClick={() => setMobileOpen(false)}

@@ -11,7 +11,6 @@ export type Profile = {
     phoneDisplay: string;
     tel: string;
     resumeLabel: string;
-    resumeHref: string;
     resumePdfHref: string;
   };
 };
@@ -42,7 +41,6 @@ export const profile: Profile = {
     phoneDisplay: "435-660-8647",
     tel: "+14356608647",
     resumeLabel: "Resume",
-    resumeHref: "/resume",
     resumePdfHref: publicUrl("Kelley_Groves_Resume.pdf"),
   },
 };

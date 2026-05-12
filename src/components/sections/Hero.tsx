@@ -71,9 +71,14 @@ export function Hero() {
               <Link to="/projects" className="btn-portfolio-primary">
                 View projects
               </Link>
-              <Link to="/resume" className="btn-portfolio-outline">
+              <a
+                href={profile.contact.resumePdfHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-portfolio-outline"
+              >
                 Resume
-              </Link>
+              </a>
               <Link to="/contact" className="btn-portfolio-outline">
                 Contact
               </Link>

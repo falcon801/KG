@@ -1,5 +1,4 @@
 import { FileText, Mail, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
 import { profile } from "../../data/profile";
 import { GlassCard } from "../ui/GlassCard";
 
@@ -29,8 +28,10 @@ export function ContactPanel() {
             <p className="mt-1 text-lg font-semibold text-[#f5ead8] group-hover:text-[#fff4df]">{contact.phoneDisplay}</p>
           </div>
         </a>
-        <Link
-          to={contact.resumeHref}
+        <a
+          href={contact.resumePdfHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="group flex flex-col gap-3 border-b border-white/10 p-8 transition hover:bg-white/[0.04] md:border-b-0"
         >
           <FileText className="h-6 w-6 text-[#d8bc83]" />
@@ -38,7 +39,7 @@ export function ContactPanel() {
             <p className="font-mono text-[10px] uppercase tracking-wider text-[#9f8f75]">Resume</p>
             <p className="mt-1 text-lg font-semibold text-[#f5ead8] group-hover:text-[#fff4df]">{contact.resumeLabel}</p>
           </div>
-        </Link>
+        </a>
       </div>
     </GlassCard>
   );

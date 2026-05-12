@@ -6,7 +6,8 @@ export function ResumePage() {
   const pdf = profile.contact.resumePdfHref;
 
   useEffect(() => {
-    window.location.replace(pdf);
+    const absolute = new URL(pdf, window.location.origin).href;
+    window.location.replace(absolute);
   }, [pdf]);
 
   return (
