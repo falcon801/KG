@@ -38,8 +38,8 @@ export const profile: Profile = {
 
   contact: {
     email: "groves1801@gmail.com",
-    phoneDisplay: "435-660-8647",
-    tel: "+14356608647",
+    phoneDisplay: "385-581-6161",
+    tel: "385-581-6161",
     resumeLabel: "Resume",
     resumePdfHref: publicUrl("Kelley_Groves_Resume.pdf"),
   },
